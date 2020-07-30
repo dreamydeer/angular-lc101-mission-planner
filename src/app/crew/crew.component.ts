@@ -21,7 +21,12 @@ export class CrewComponent implements OnInit {
   }
 
   add(memberName: string, isFirst: boolean) {
-    this.crew.push({ name: memberName, firstMission: isFirst });
+    const found: boolean = this.crew.some((member): boolean => {
+      return member.name === memberName;
+    });
+    if(!found) {
+      this.crew.push({ name: memberName, firstMission: isFirst });
+    }
   }
 
   remove(member: object) {
